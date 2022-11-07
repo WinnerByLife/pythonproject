@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="all-page-title page-breadcrumb">
+		<div class="container text-center">
+			<div class="row">
+				<div class="col-lg-12">
+					<h1>Create product</h1>
+				</div>
+			</div>
+		</div>
+</div>
+        <div class="container">
+            <div class="row">
+              <form action="{{url_for('create_product') }}" method="POST" enctype="multipart/form-data">
+                {% if context %}
+                  {{context}}
+                  {% endif %}
+            <div class="mb-3">
+              <label for="exampleFormControlInput1" class="form-label">Title</label>
+              <input type="text" class="form-control" name="product_title" id="exampleFormControlInput1" placeholder="" required>
+            </div>
+            <div class="mb-3">
+              <label for="exampleFormControlTextarea1" class="form-label">Description</label>
+              <textarea class="form-control" id="exampleFormControlTextarea1" name="product_body" rows="3" required></textarea>
+            </div>
+               <div class="mb-3">
+              <label for="product_price" class="form-label">Price</label>
+              <input type="text" class="form-control" id="product_price" name="product_price" required>
+            </div>
+              <div class="mb-3">
+              <label for="formFile" class="form-label">Image</label>
+              <input class="form-control" type="file" id="formFile" name="product_img" required>
+
+            </div>
+                  <div class="mb-3">
+              <label for="category" class="form-label">Category</label>
+              <input type="text" class="form-control" name="product_category" id="category" placeholder="Drinks, lunch, dinner" required>
+            </div>
+                <button type="submit" class="btn btn-primary mb-3">Create</button>
+              </form>
+            </div>
+        </div>
+{% endblock %}
