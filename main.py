@@ -18,7 +18,7 @@ mail = Mail(flask_app)
 
 @flask_app.route("/send/reservation", methods=["POST"])
 def send():
-  email = request.form[['email']]
+  email = request.form['email']
   msg = Message('We accepted your reservation', sender ='your@gmail.com', recipients=[email])
   name = request.form['name']
   phone = request.form['phone']
@@ -129,41 +129,6 @@ def display_image(filename):
     if filename is None:
         return redirect(url_for('static', filename='media/products/' + 'default.jng'), code=301)
     return redirect(url_for('static', filename='media/products/' + filename), code=301)
-
-
-@flask_app.route("/add_to_cart/<int:id>")
-def add_to_cart(id):
-    if "cart" not in session:
-        session["cart"] = []
-
-    session["cart"].append(id)
-
-    flash("Successfully added to cart!")
-    return redirect(url_for('products'))
-
-
-@flask_app.route("/cart")
-def shopping_cart():
-    """TODO: Display the contents of the shopping cart. The shopping cart is a
-    list held in the session that contains all the melons to be added. Check
-    accompanying screenshots for details."""
-    if "cart" not in session:
-        flash("There is nothing in your cart.")
-        return render_template("shopping_cart.html", display_cart={}, total=0)
-    else:
-        items = session["cart"]
-        dict_of_products = {}
-        db = SessionLocal()
-        total_price = 0
-        for item in items:
-            product = product_crud.get_product_by_id(db,item)
-            total_price += product.price
-            if product.product_id in dict_of_products:
-                dict_of_products[product.product_id]["qty"] += 1
-            else:
-                dict_of_products[product.product_id] = {"qty": 1, "name": product.title, "price": product.price}
-
-        return render_template("shopping_cart.html", display_cart=dict_of_products, total=total_price)
 
 
 @flask_app.route("/about")
