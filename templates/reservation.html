@@ -34,13 +34,20 @@
 									<h3>Book a table</h3>
 									<div class="col-md-12">
 										<div class="form-group">
-											<input id="input_date" class="datepicker picker__input form-control" name="date" type="text" value="" equired data-error="Please enter Date">
+											<input id="input_date" class="datepicker picker__input form-control" name="date" placeholder="Please enter Date" required data-error="Please enter date">
 											<div class="help-block with-errors"></div>
 										</div>
 									</div>
 									<div class="col-md-12">
 										<div class="form-group">
 											<input id="input_time" class="time form-control picker__input" required data-error="Please enter time">
+											<option disabled selected>Select time*</option>
+											  <option value="1">17:00</option>
+											  <option value="2">18:00</option>
+											  <option value="3">19:00</option>
+											  <option value="4">20:00</option>
+											  <option value="5">21:00</option>
+											  <option value="6">22:00</option>
 											<div class="help-block with-errors"></div>
 										</div>
 									</div>
